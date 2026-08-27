@@ -1,4 +1,4 @@
-# JS Training
+﻿# JS Training
 
 ## О проекте
 Этот репозиторий — мой дневник практики JavaScript.
@@ -19,11 +19,11 @@
 | Урок | Тема | Статус |
 |------|------|--------|
 | 02 | Переменные, const/let, use strict | done |
-| 03 | Типы данных, typeof, приведение типов | pending |
-| 04 | Математика, инкремент, операторы | pending |
-| 05 | Условия if/else, тернарный, ?? | pending |
-| 06 | switch, prompt, confirm | pending |
-| 07 | Циклы for, while, do...while | pending |
+| 03 | Типы данных, typeof, приведение типов | done |
+| 04 | Математика, инкремент, операторы | done |
+| 05 | Условия if/else, тернарный, ?? | done |
+| 06 | switch, prompt, confirm | done |
+| 07 | Циклы for, while, do...while | done |
 
 ---
 
