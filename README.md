@@ -45,3 +45,11 @@ trenirovka_JS/
 ## Стек
 
 JavaScript ES6+ / Vanilla JS
+
+
+## 🎮 Интерактивные мини-проекты (Финальные боссы)
+
+- **Спринт 1:** [🏧 Симулятор банкомата AETHER Neo-Bank (Live Demo)](https://maxolio.github.io/js-training/sprint_01_basics/03_boss_atm_ui_my/)
+    - *Стек:* HTML5, CSS3 (Neon / Glassmorphism), Vanilla JS (ES6+).
+    - *Что реализовано:* Авторизация по PIN (3 попытки, блокировка), операции со счетом, 
+      генерация чека транзакций.

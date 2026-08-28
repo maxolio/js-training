@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Orbitron:wght@600;900&display=swap');
+
+:root {
+  --bg-main: #060911;
+  --panel-bg: #0e1424;
+  --screen-bg: #050811;
+  --neon-cyan: #00f2fe;
+  --neon-green: #00e676;
+  --neon-red: #ff3366;
+  --text-main: #e2e8f0;
+  --text-muted: #64748b;
+  --border-glow: rgba(0, 242, 254, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'JetBrains Mono', monospace;
+  user-select: none;
+}
+
+body {
+  min-height: 100vh;
+  padding-inline: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-main);
+ /* background: radial-gradient(circle at center, #111b33 0%, var(--bg-main) 100%);*/
+  /* 1. Резервный сплошной цвет подложки (на случай сбоя рендера градиента) */
+  background-color: var(--bg-main);
+
+  /* 2. Сам градиент как генерируемое браузером изображение */
+  background-image: radial-gradient(circle at center, #111b33 0%, var(--bg-main) 100%);
+
+  /* 3. Запрет повторения (плитки) градиента по осям X и Y */
+  background-repeat: no-repeat;
+
+  /* 4. Позиционирование фонового изображения ровно по центру экрана */
+  background-position: center;
+
+  /* 5. Растягивание фона на всю доступную область контейнера */
+  background-size: cover;
+
+  /* 6. Фиксация фона (чтобы он не уезжал при скролле) */
+  background-attachment: fixed;
+}
+
+.atm {
+  display: flex;
+  column-gap: 30px;
+  background-color: var(--panel-bg);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 0 50px rgba(0, 242, 254, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.02);
+  max-width: 900px;
+  width: 100%;
+}
+
+.screen {
+  flex: 1.6;
+  background-color: var(--screen-bg);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow:  inset 0 0 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.1);
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+}
+
+.screen__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Тонкий разделитель */
+  padding-bottom: 10px;
+}
+
+.screen__logo {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+}
+
+.screen__status {
+  font-size: 0.8rem;
+  padding: 4px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border: 1px solid rgb(147 124 20 / 0.4);
+}
+
+.screen__status--locked {
+  background: rgba(255, 51, 102, 0.15);
+  color: var(--neon-red);
+  border: 1px solid rgba(255, 51, 102, 0.4);
+}
+
+.screen__status--unlocked {
+  background: rgba(0, 230, 118, 0.15);
+  color: var(--neon-green);
+  border: 1px solid rgba(0, 230, 118, 0.4);
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.5);
+}
+
+.screen__body {
+  text-align: center;
+  margin: auto 0;
+}
+
+.screen__message {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.screen__balance {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--neon-green);
+  text-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+  margin-bottom: 10px;
+}
+
+.screen__dots {
+  font-size: 1.8rem;
+  letter-spacing: 10px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.screen__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  transition: opacity 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.screen__actions--disabled {
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.screen__btn {
+  background: rgba(0, 242, 254, 0.05);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  color: var(--text-main);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* 1. ДЛЯ ПК И НОУТБУКОВ (есть курсор мыши, поддерживается полноценный hover) */
+@media (hover: hover) and (pointer: fine) {
+  .screen__btn:hover {
+    background: rgba(0, 242, 254, 0.15);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* Нажатие кнопки мыши: кнопка возвращается на место */
+  .screen__btn:active {
+    background: rgba(0, 242, 254, 0.25);
+    box-shadow: 0 0 5px rgba(0, 242, 254, 0.2);
+    transform: translateY(0); /* Возврат на исходную позицию */
+  }
+}
+
+/* 2. ДЛЯ СМАРТФОНОВ И ТАЧ-УСТРОЙСТВ (сенсорный экран, ховера нет) */
+/* Вместо зависающего :hover используем отклик на касание пальцем :active */
+@media (hover: none) and (pointer: coarse) {
+  .screen__btn:active {
+    background-color: rgba(0, 242, 254, 0.25);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+  }
+}
+
+.screen__receipt {
+  background: #020408;
+  border: 1px solid rgb(239 231 231 / 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: #a0aec0;
+  height: 5rem;
+  overflow-y: auto; /* Появляется скролл, если история не влезает */
+  text-align: left;
+
+  /* 1. Для Firefox и современных стандартов */
+  scrollbar-width: none;
+
+  /* 2. Для старого Edge / IE */
+  -ms-overflow-style: none;
+}
+
+/* 3. Для Chrome, Safari, Opera и новых версий Edge */
+.screen__receipt::-webkit-scrollbar {
+  display: none;
+}
+
+/* №10. Физическая клавиатура: сетка 3x4 с псевдообъемными кнопками */
+.keypad {
+  flex: 1; /* Занимает 1 часть ширины */
+  background-color: #0a0f1d;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(224 221 221 / 0.3);
+  display: flex;
+  align-items: center; /* Центрирует сетку кнопок внутри панели */
+}
+
+.keypad__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 равные колонки для цифр */
+  gap: 10px;
+  width: 100%;
+}
+
+.keypad__btn {
+  background: #151c2f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 18px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 #080c16; /* Нижняя тень для 3D-эффекта физической клавиши */
+}
+
+.keypad__btn:hover {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.keypad__btn:active {
+  transform: translateY(2px); /* Кнопка уходит вниз при нажатии */
+  box-shadow: 0 1px 0 #080c16; /* Тень уменьшается при вдавливании */
+}
+
+.keypad__btn--clear {
+  color: var(--neon-red);
+}
+
+.keypad__btn--enter {
+  color: var(--neon-green);
+}
+
+.hidden {
+  display: none !important;
+}
+/* №12. Мобильная адаптивность: перестраиваем 2 колонки в 1 столбец */
+@media (max-width: 768px) {
+  .atm {
+    flex-direction: column; /* Экран сверху, клавиатура снизу */
+    max-width: 100%;
+    gap: 20px;
+  }
+
+  .screen {
+    min-height: 514px;
+    text-align: center;
+  }
+
+  .screen__actions {
+    grid-template-columns: 1fr; /* Кнопки действий в 1 колонку на смартфонах */
+  }
+
+  .keypad__grid {
+    gap: 8px;
+  }
+
+  .keypad__btn {
+    padding: 14px 0;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title> Neo-Bank | ATM Terminal</title>
+  <link rel="stylesheet"
+        href="style.css">
+</head>
+<body>
+<div class="atm">
+  <div class="atm__screen screen">
+    <div class="screen__header">
+      <span class="screen__logo">⚡ AETHER BANK</span>
+      <span class="screen__status screen__status--locked"
+            data-js-auth-status>🔒 LOCKED</span>
+    </div>
+
+    <div class="screen__body">
+      <div class="screen__message"
+           data-js-screen-message>ВВЕДИТЕ PIN-КОД НА КЛАВИАТУРЕ
+      </div>
+      <div class="screen__balance hidden"
+           data-js-balance-display>$0.00
+      </div>
+      <div class="screen__dots"
+           data-js-pin-dots>_ _ _ _
+      </div>
+    </div>
+
+    <div class="screen__actions screen__actions--disabled"
+         data-js-menu-actions>
+      <button class="screen__btn"
+              data-js-action="balance">📊 Баланс
+      </button>
+      <button class="screen__btn"
+              data-js-action="withdraw">💸 Снять $500
+      </button>
+      <button class="screen__btn"
+              data-js-action="deposit">💳 Пополнить $1000
+      </button>
+      <button class="screen__btn"
+              data-js-action="receipt">🧾 Чек / История
+      </button>
+
+    </div>
+
+    <div class="screen__receipt"
+         data-js-receipt-log>--- История операций пуста ---</div>
+  </div>
+  <div class="atm__keypad keypad">
+    <div class="keypad__grid">
+      <button class="keypad__btn"
+              data-js-key="1">1</button>
+      <button class="keypad__btn"
+              data-js-key="2">2</button>
+      <button class="keypad__btn"
+              data-js-key="3">3</button>
+
+      <button class="keypad__btn"
+              data-js-key="4">4</button>
+      <button class="keypad__btn"
+              data-js-key="5">5</button>
+      <button class="keypad__btn"
+              data-js-key="6">6</button>
+
+      <button class="keypad__btn"
+              data-js-key="7">7</button>
+      <button class="keypad__btn"
+              data-js-key="8">8</button>
+      <button class="keypad__btn"
+              data-js-key="9">9</button>
+
+      <button class="keypad__btn keypad__btn--clear"
+              data-js-key="clear">✖ C</button>
+      <button class="keypad__btn"
+              data-js-key="0">0</button>
+      <button class="keypad__btn keypad__btn--enter"
+              data-js-key="enter">✔ OK</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
+
+<!--
+http://127.0.0.1:8080/sprint_01_basics/03_boss_atm_ui_my/index.html
+-->
