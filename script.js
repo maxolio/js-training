@@ -6,4 +6,4 @@
 
 // СПРИНТ 1: Урок 02-03. Переменные, типы данных
 
-import './sprint_01_basics/02_practical/task_7_1_loops_sequence.js';
+import './sprint_02_functions_scope/01_warmup/task_9_1_arrow_rest.js';
