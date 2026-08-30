@@ -1,16 +1,18 @@
-﻿# JS Training
+﻿# 🧠 JavaScript Training
 
-## О проекте
-Этот репозиторий — мой дневник практики JavaScript.
-Я изучаю JS системно, двигаясь от основ к продвинутым темам.
+## 📖 О проекте
+Этот репозиторий — мой интерактивный дневник практики и изучения JavaScript.
+Я изучаю JS системно, двигаясь от базовых основ к продвинутым концепциям языка.
 Каждая тема закрепляется задачами трёх уровней: разминка, бизнес-логика и задачи с подвохом.
-Цель — не просто запомнить синтаксис, а научиться мыслить как разработчик:
-разбирать задачу на части, понимать что происходит под капотом JS-движка
+
+**Главная цель** — не просто запомнить синтаксис, а научиться мыслить алгоритмически:
+разбирать задачу на атомы, понимать работу движка JS «под капотом» (Call Stack, Memory Heap, Lexical Environment, Closures)
 и писать чистый, предсказуемый код без неожиданных багов.
+
 Каждый файл с задачей содержит:
-- условие задачи и разбор граничных случаев (edge cases)
-- решение с поясняющими комментариями к каждой строке
-- разбор концепций языка, которые закрепляет задача
+- Подробное условие задачи и разбор граничных случаев (Edge Cases).
+- Решение с построчными поясняющими комментариями к каждому блоку.
+- Синтаксический разбор концепций языка, которые закрепляет задача.
 
 ---
 
@@ -28,7 +30,7 @@
 | **05** | Условия `if/else`, тернарный оператор, `??` | ✅ done |
 | **06** | `switch`, `prompt`, `confirm` | ✅ done |
 | **07** | Циклы `for`, `while`, `do...while` | ✅ done |
-| **BOSS** | [🏧 Симулятор банкомата AETHER Neo-Bank (UI Live Demo)](https://maxolio.github.io/js-training/sprint_01_basics/03_boss_atm_ui_my/) | ✅ done |
+| **BOSS** | [🏧 Симулятор банкомата AETHER Neo-Bank (Live Demo)](https://maxolio.github.io/js-training/sprint_01_basics/03_boss_atm_ui_my/) | ✅ done |
 
 </details>
 
@@ -38,10 +40,10 @@
 
 | Урок | Тема | Статус |
 |:---|:---|:---:|
-| **08** | Функции, Scope, параметры по умолчанию | ✅ done |
-| **09** | Виды функций, стрелочные, Rest-параметры | ✅ done |
-| **09+** | Замыкания (Closures) и фабрики функций | ⏳ pending |
-| **09+** | Функции высшего порядка (HOC / Callbacks) | ⏳ pending |
+| **08** | Функции, Scope, параметры по умолчанию (Task 8.1) | ✅ done |
+| **09** | Виды функций, стрелочные, Rest-параметры (Task 9.1) | ✅ done |
+| **09+** | Замыкания (Closures) и фабрики функций (Task 9.2) | ✅ done |
+| **09+** | Функции высшего порядка (HOF / Callbacks) (Task 9.3) | ⏳ pending |
 | **BOSS** | Интерактивный Квиз / Мини-игра на замыканиях (UI) | ⏳ pending |
 
 </details>
@@ -59,29 +61,35 @@
 
 </details>
 
-## Структура проекта
-
-```
-trenirovka_JS/
-├── sprint_01_basics/
-│   └── 01_warmup/
-│       ├── task_1_1_user_profile.js      # Оператор ??, шаблонные строки
-│       └── task_2_1_variables_config.js  # const/let, camelCase, копирование примитивов
-├── script.js   # Точка входа, подключение модулей
-├── PLAN.md     # Полный план обучения с чекбоксами прогресса
-└── README.md
-```
-
 ---
 
-## Стек
+## 🗂️ Структура проекта
 
-JavaScript ES6+ / Vanilla JS
-
-
-## 🎮 Интерактивные мини-проекты (Финальные боссы)
-
-- **Спринт 1:** [🏧 Симулятор банкомата AETHER Neo-Bank (Live Demo)](https://maxolio.github.io/js-training/sprint_01_basics/03_boss_atm_ui_my/)
-    - *Стек:* HTML5, CSS3 (Neon / Glassmorphism), Vanilla JS (ES6+).
-    - *Что реализовано:* Авторизация по PIN (3 попытки, блокировка), операции со счетом, 
-      генерация чека транзакций.
+```text
+trenirovka_JS/
+├── sprint_01_basics/
+│   ├── 01_warmup/
+│   │   ├── task_1_1_user_profile.js        # Оператор ??, шаблонные строки
+│   │   └── task_2_1_variables_config.js    # const/let, camelCase, копирование примитивов
+│   ├── 02_practical/
+│   │   ├── task_3_1_inspect_entity.js      # typeof, явное приведение типов
+│   │   ├── task_4_1_math_operators.js      # Математика, инкремент, Unicode-сравнение
+│   │   ├── task_5_1_smart_access.js        # Условия &&, ||, вложенный тернарный
+│   │   ├── task_6_1_switch_grades.js       # switch (true), группировка кейсов
+│   │   ├── task_7_1_loops_sequence.js      # Цикл for, continue, break
+│   │   └── task_7_2_safe_input.js          # Цикл do...while (ввод пароля)
+│   └── 03_boss_atm_ui_my/                  # 🏆 ФИНАЛЬНЫЙ БОСС 1 (Банкомат UI)
+│       ├── index.html
+│       ├── style.css
+│       ├── app.js
+│       └── README.md
+│
+├── sprint_02_functions_scope/
+│   └── 01_warmup/
+│       ├── task_8_1_discount_calculator.js # Scope, default params, early return
+│       ├── task_9_1_arrow_rest.js          # Arrow functions, rest (...args)
+│       └── task_9_2_closures_factory.js    # Closures, Lexical Environment, State Manager
+│
+├── script.js                               # Точка входа для модулей
+├── PLAN.md                                 # Детальный трекер обучения
+└── README.md                               # Витрина проекта
