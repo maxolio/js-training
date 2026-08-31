@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBER JS QUIZ | Sprint 2 Boss</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+
+<div class="cyber-quiz">
+
+  <!-- ХЕДЕР КВИЗА -->
+  <header class="cyber-quiz__header">
+    <div class="cyber-quiz__badge cyber-quiz__badge--logo">⚡ JS ENGINE 2.0</div>
+
+    <div class="cyber-quiz__stats">
+      <div class="cyber-quiz__stat-item">
+        <span class="cyber-quiz__stat-label">ОЧКИ</span>
+        <span class="cyber-quiz__stat-value" data-js-score>0</span>
+      </div>
+      <div class="cyber-quiz__stat-item">
+        <span class="cyber-quiz__stat-label">СТРИК</span>
+        <span class="cyber-quiz__stat-value cyber-quiz__stat-value--streak" data-js-streak>x0</span>
+      </div>
+      <div class="cyber-quiz__stat-item cyber-quiz__stat-item--timer">
+        <span class="cyber-quiz__stat-label">ВРЕМЯ</span>
+        <span class="cyber-quiz__stat-value cyber-quiz__stat-value--timer" data-js-timer>15s</span>
+      </div>
+    </div>
+
+    <!-- ПРОГРЕСС-БАР -->
+    <div class="cyber-quiz__progress">
+      <div class="cyber-quiz__progress-fill" data-js-progress style="width: 0%;"></div>
+    </div>
+  </header>
+
+  <!-- ЭКРАН ВОПРОСА -->
+  <main class="cyber-quiz__main" data-js-quiz-screen>
+    <div class="cyber-quiz__meta">
+      <span class="cyber-quiz__counter" data-js-counter>Вопрос 1 из 10</span>
+      <span class="cyber-quiz__badge cyber-quiz__badge--category" data-js-category>CLOSURES</span>
+    </div>
+
+    <h2 class="cyber-quiz__question" data-js-question-text>
+      Что такое Замыкание (Closure) в JavaScript?
+    </h2>
+
+    <!-- СЕТКА ВАРИАНТОВ ОТВЕТОВ -->
+    <div class="cyber-quiz__options" data-js-options></div>
+  </main>
+
+  <!-- ЭКРАН ФИНАЛЬНЫХ РЕЗУЛЬТАТОВ -->
+  <section class="cyber-quiz__results cyber-quiz__results--hidden" data-js-results-screen>
+    <div class="cyber-quiz__result-icon">🏆</div>
+    <h2 class="cyber-quiz__result-title">ТЕСТ ЗАВЕРШЕН!</h2>
+    <p class="cyber-quiz__result-rank" data-js-rank>РАНГ: SENIOR JS ARCHITECT</p>
+
+    <div class="cyber-quiz__result-grid">
+      <div class="cyber-quiz__result-card">
+        <span class="cyber-quiz__result-number" data-js-final-score>0</span>
+        <span class="cyber-quiz__result-desc">Итоговые очки</span>
+      </div>
+      <div class="cyber-quiz__result-card">
+        <span class="cyber-quiz__result-number" data-js-correct-count>0/10</span>
+        <span class="cyber-quiz__result-desc">Правильных ответов</span>
+      </div>
+      <div class="cyber-quiz__result-card">
+        <span class="cyber-quiz__result-number" data-js-max-streak>x0</span>
+        <span class="cyber-quiz__result-desc">Лучший стрик</span>
+      </div>
+    </div>
+
+    <button class="cyber-quiz__restart-btn" data-js-restart>🔄 НАЧАТЬ ЗАНОВО</button>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

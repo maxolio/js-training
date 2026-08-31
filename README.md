@@ -35,7 +35,7 @@
 </details>
 
 <details open>
-<summary><b>🟡 Спринт 2: Функции, Scope и Контексты выполнения (В процессе)</b></summary>
+<summary><b>🟢 Спринт 2: Функции, Scope и Контексты выполнения (Завершен)</b></summary>
 <br>
 
 | Урок | Тема | Статус |
@@ -43,8 +43,8 @@
 | **08** | Функции, Scope, параметры по умолчанию (Task 8.1) | ✅ done |
 | **09** | Виды функций, стрелочные, Rest-параметры (Task 9.1) | ✅ done |
 | **09+** | Замыкания (Closures) и фабрики функций (Task 9.2) | ✅ done |
-| **09+** | Функции высшего порядка (HOF / Callbacks) (Task 9.3) | ⏳ pending |
-| **BOSS** | Интерактивный Квиз / Мини-игра на замыканиях (UI) | ⏳ pending |
+| **09+** | Функции высшего порядка (HOF / Callbacks) (Task 9.3) | ✅ done |
+| **BOSS** | [⚡ Cyber JS Quiz Engine — Квиз по JS на замыканиях и HOF (Live Demo)](https://maxolio.github.io/js-training/sprint_02_functions_scope/03_boss_quiz_engine/) | ✅ done |
 
 </details>
 
@@ -85,10 +85,15 @@ trenirovka_JS/
 │       └── README.md
 │
 ├── sprint_02_functions_scope/
-│   └── 01_warmup/
-│       ├── task_8_1_discount_calculator.js # Scope, default params, early return
-│       ├── task_9_1_arrow_rest.js          # Arrow functions, rest (...args)
-│       └── task_9_2_closures_factory.js    # Closures, Lexical Environment, State Manager
+│   ├── 01_warmup/
+│   │   ├── task_8_1_discount_calculator.js # Scope, default params, early return
+│   │   ├── task_9_1_arrow_rest.js          # Arrow functions, rest (...args)
+│   │   ├── task_9_2_closures_factory.js    # Closures, Lexical Environment, State Manager
+│   │   └── task_9_3_hof_callbacks.js       # HOF, Callbacks, Decorator pattern
+│   └── 03_boss_quiz_engine/                # 🏆 ФИНАЛЬНЫЙ БОСС 2 (Cyber Quiz UI)
+│       ├── index.html
+│       ├── style.css
+│       └── app.js
 │
 ├── script.js                               # Точка входа для модулей
 ├── PLAN.md                                 # Детальный трекер обучения
