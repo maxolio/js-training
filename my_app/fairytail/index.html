@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Волшебная сказка: Приключение Зайчика</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #a1c4fd 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
+
+    /* Карточка сказки */
+    .story-card {
+      background: #ffffff;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      padding: 24px;
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      border: 4px solid #fff5ea;
+    }
+
+    /* Главный заголовок/вопрос */
+    .story-question {
+      font-size: 22px;
+      color: #7c2d12;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    /* Контейнер для иллюстрации */
+    .image-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 4px solid #ffedd5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: #fffaf5;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .placeholder-art {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .placeholder-emoji {
+      font-size: 56px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    }
+
+    .placeholder-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #431407;
+    }
+
+    .placeholder-hint {
+      font-size: 12px;
+      color: #78716c;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 3px 10px;
+      border-radius: 12px;
+      border: 1px dashed #fdba74;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Блок сказочного монолога (нарратив) */
+    .story-narration {
+      font-size: 17px;
+      line-height: 1.5;
+      color: #334155;
+      background: #f8fafc;
+      padding: 14px 18px;
+      border-radius: 18px;
+      border-left: 5px solid #f97316;
+      text-align: left;
+      width: 100%;
+    }
+
+    /* Кнопки вариантов */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .btn-choice {
+      background-color: #ffffff;
+      border: 3px solid #e2e8f0;
+      border-bottom: 6px solid #cbd5e1;
+      border-radius: 18px;
+      padding: 14px 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: transform 0.1s, background-color 0.2s;
+      user-select: none;
+    }
+
+    .btn-choice:active {
+      transform: translateY(3px);
+      border-bottom-width: 3px;
+    }
+
+    .btn-choice.selected {
+      background-color: #bbf7d0 !important;
+      border-color: #22c55e !important;
+      border-bottom-color: #16a34a !important;
+      color: #14532d !important;
+      animation: bounce 0.4s ease;
+    }
+
+    .btn-restart {
+      background: linear-gradient(135deg, #ff7675, #d63031);
+      color: white;
+      border: none;
+      border-bottom: 5px solid #b71540;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="story-card">
+  <!-- 1. Вопрос или название сцены -->
+  <h2 class="story-question" id="story-question">Загрузка...</h2>
+
+  <!-- 2. Иллюстрация -->
+  <div class="image-box" id="image-box"></div>
+
+  <!-- 3. Сказочный монолог (текст истории) -->
+  <p class="story-narration" id="story-narration"></p>
+
+  <!-- 4. Кнопки вариантов -->
+  <div class="options-grid" id="options-container"></div>
+</div>
+
+<script>
+  // ========================================================
+  // СКАЗОЧНЫЕ ДАННЫЕ И МОНОЛОГИ
+  // ========================================================
+  const storyData = {
+    // --- ШАГ 1: Начало истории ---
+    step1: {
+      image: "photo/1.png",
+      bgGradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+      emoji: "🐰 🎒 ☀️",
+      sceneTitle: "Домик Зайчика",
+      hintFile: "Файл: photo/1.png",
+
+      question: "Что Зайчик положит в рюкзачок?",
+      narration: "Жил-был в уютной норке маленький пушистый Зайчик. Утром ласковое солнышко заглянуло к нему в окошко, и он решил отправиться в большое путешествие. Зайчик достал свой любимый рюкзачок...",
+      speech: "Жил-был маленький пушистый Зайчик. Утром он решил отправиться в путешествие. Помоги Зайчику: что же мы положим в рюкзачок?",
+      options: [
+        {
+          text: "☂️ Зонтик",
+          next: "step2",
+          reactionSpeech: "Шур-шур! Зайчик бережно уложил зонтик: 'Теперь даже грибной дождик нам не страшен!'"
+        },
+        {
+          text: "🥕 Сладкую морковку",
+          next: "step2",
+          reactionSpeech: "Хрум-хрум! Хрустящая морковка — лучший перекус для смелого путешественника!"
+        },
+        {
+          text: "⚽ Звонкий мячик",
+          next: "step2",
+          reactionSpeech: "Прыг-скок! Мячик весело запрыгнул в рюкзак: 'Будет с кем поиграть на полянке!'"
+        }
+      ]
+    },
+
+    // --- ШАГ 2: Развилка ---
+    step2: {
+      image: "photo/2.png",
+      bgGradient: "linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)",
+      emoji: "🌲 🚏 🌳",
+      sceneTitle: "Сказочная развилка",
+      hintFile: "Файл: photo/2.png",
+
+      question: "Куда повернёт Зайчик?",
+      narration: "Застегнул Зайчик рюкзачок и весело побежал по мощёной дорожке. Бежал-бежал и оказался на развилке. Направо вела яркая аллея в солнечный парк, а налево — таинственная тропинка в сказочный лес.",
+      speech: "Выбежал Зайчик на развилку дорог. Впереди две тропинки: солнечный парк и сказочный лес. Куда мы отправимся?",
+      options: [
+        {
+          text: "🌳 В солнечный парк",
+          next: "step3_park",
+          reactionSpeech: "Ура! Навстречу веселью и каруселям! Зайчик побежал по солнечной дорожке."
+        },
+        {
+          text: "🌲 В таинственный лес",
+          next: "step3_forest",
+          reactionSpeech: "Вперёд, навстречу лесным тайнам и чудесам! Зайчик смело зашагал по мягкому мху."
+        }
+      ]
+    },
+
+    // --- ШАГ 3 (Вариант А): Парк ---
+    step3_park: {
+      image: "photo/4.png",
+      bgGradient: "linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)",
+      emoji: "🎡 🍦 🎈",
+      sceneTitle: "Праздник в парке!",
+      hintFile: "Файл: photo/4.png",
+
+      question: "Весёлый день в парке! 🎉",
+      narration: "В парке звонко играла музыка и кружились карусели! Зайчик встретил белочек и медвежат, катался с горок и устроил праздничный пикник. Это был самый радостный и добрый день! Вот и сказочке конец, а кто слушал — молодец!",
+      speech: "В парке было чудесно! Зайчик катался на каруселях, нашёл много новых друзей и был абсолютно счастлив. Вот и сказочке конец, а кто слушал — молодец!",
+      isEnding: true
+    },
+
+    // --- ШАГ 3 (Вариант Б): Лес ---
+    step3_forest: {
+      image: "photo/3.png",
+      bgGradient: "linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)",
+      emoji: "🍄 🦔 ✨",
+      sceneTitle: "Тайны волшебного леса",
+      hintFile: "Файл: photo/3.png",
+
+      question: "Волшебство в лесу! 🌲",
+      narration: "Лес встретил Зайчика пением птиц и ароматом земляники. На полянке добрый Ёжик угостил его спелыми лесными ягодками, а мудрая Сова рассказала древнюю сказку. Зайчик узнал много чудес! Вот и сказочке конец, а кто слушал — молодец!",
+      speech: "В сказочном лесу пахло хвоей и ягодами. Зайчик подружился с добрым Ёжиком и мудрой Совой. Путешествие удалось на славу! Вот и сказочке конец, а кто слушал — молодец!",
+      isEnding: true
+    }
+  };
+
+  let isLocked = false;
+
+  const storyQuestion = document.getElementById("story-question");
+  const storyNarration = document.getElementById("story-narration");
+  const imageBox = document.getElementById("image-box");
+  const optionsContainer = document.getElementById("options-container");
+
+  // Озвучка с мягким сказочным темпом
+  function speakText(text, onComplete) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+
+      const voice = new SpeechSynthesisUtterance(text);
+      voice.lang = 'ru-RU';
+      voice.rate = 0.88; // чуть медленнее обычного — идеально для детских сказок
+      voice.pitch = 1.05; // чуть теплее тембр
+
+      let isTriggered = false;
+      const complete = () => {
+        if (!isTriggered) {
+          isTriggered = true;
+          if (onComplete) onComplete();
+        }
+      };
+
+      voice.onend = () => setTimeout(complete, 400);
+      voice.onerror = () => complete();
+      setTimeout(complete, 8000); // страховка для длинного текста
+
+      window.speechSynthesis.speak(voice);
+    } else {
+      if (onComplete) setTimeout(onComplete, 1500);
+    }
+  }
+
+  // Отрисовка сцены сказки
+  function renderStep(stepKey) {
+    isLocked = false;
+    const step = storyData[stepKey];
+
+    // 1. Вопрос и текст сказки
+    storyQuestion.textContent = step.question;
+    storyNarration.textContent = step.narration;
+
+    // 2. Иллюстрация или заглушка
+    if (step.image && step.image.trim() !== "") {
+      imageBox.innerHTML = `<img src="${step.image}" alt="Сцена" onerror="showPlaceholder('${stepKey}')">`;
+    } else {
+      showPlaceholder(stepKey);
+    }
+
+    // 3. Очищаем кнопки
+    optionsContainer.innerHTML = "";
+
+    // 4. Озвучиваем сказочный фрагмент
+    speakText(step.speech);
+
+    // 5. Финал сказки
+    if (step.isEnding) {
+      const restartBtn = document.createElement("button");
+      restartBtn.classList.add("btn-choice", "btn-restart");
+      restartBtn.textContent = "✨ Слушать сказку сначала";
+      restartBtn.addEventListener("click", () => renderStep("step1"));
+      optionsContainer.appendChild(restartBtn);
+      return;
+    }
+
+    // 6. Кнопки вариантов выбора
+    step.options.forEach(option => {
+      const btn = document.createElement("button");
+      btn.classList.add("btn-choice");
+      btn.textContent = option.text;
+
+      btn.addEventListener("click", () => {
+        if (isLocked) return;
+        isLocked = true;
+
+        btn.classList.add("selected");
+
+        // Проговариваем сказочную реакцию и переходим дальше
+        speakText(option.reactionSpeech, () => {
+          renderStep(option.next);
+        });
+      });
+
+      optionsContainer.appendChild(btn);
+    });
+  }
+
+  // Заглушка
+  function showPlaceholder(stepKey) {
+    const step = storyData[stepKey];
+    imageBox.innerHTML = `
+      <div class="placeholder-art" style="background: ${step.bgGradient};">
+        <div class="placeholder-emoji">${step.emoji}</div>
+        <div class="placeholder-title">${step.sceneTitle}</div>
+        <div class="placeholder-hint">📷 ${step.hintFile}</div>
+      </div>
+    `;
+  }
+
+  // Запуск со старта
+  renderStep("step1");
+</script>
+</body>
+</html>
