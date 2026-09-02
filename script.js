@@ -6,4 +6,4 @@
 
 // СПРИНТ 1: Урок 02-03. Переменные, типы данных
 
-import './sprint_03_objects_this/01_warmup/task_10_1_dynamic_profile.js';
+import './sprint_03_objects_this/01_warmup/task_11_1_config_merger.js';
